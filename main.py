@@ -41,10 +41,7 @@ def mastermind():
 
         try:
             if not guess or len(guess) != code_length or any(n < 0 or n >= digit_range for n in set(guess)):
-                print(f"\nInvalid input. Enter exactly {code_length} numbers between 0 and {digit_range-1}.")
-                continue # restart the loop
-            elif not guess:
-                print(f"\nInvalid input. Enter exactly {code_length} numbers between 0 and {digit_range-1}.")
+                print(f"\nInvalid input. Enter exactly {code_length} numbers from 0 to {digit_range-1}.")
                 continue # restart the loop
             else:
                 correct_pos, correct_num = check_guess(secret_code, guess)

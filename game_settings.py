@@ -12,7 +12,6 @@ class GameSettings():
 
             Returns:
                 tuple[int,int]: a tuple of two positive integers [code_length,digit_range]
-        
         """
         while True:
             self.code_length = int(input('\nHow many digits do you want to solve for? : ').strip())
@@ -27,12 +26,12 @@ class GameSettings():
         while True:
             try:
                 self.digit_range = int(input('\nEnter digit range (2-8): ').strip())
-                if 2 <= self.digit_range <=8 :
+                if 2 <= self.digit_range <= 8:
                     break
                 else:
                     print('\nPlease enter a number between 2 and 8!')
 
             except ValueError:
                 print("\nInvalid input! Enter a positive integer!")
-        
+
         return self.code_length, self.digit_range

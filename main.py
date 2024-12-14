@@ -1,6 +1,6 @@
 from game_settings import GameSettings
 from mastermindbot import MastermindBot
-from game_logic import generate_secret_code, check_guess, prompt_play_again
+from game_logic import generate_secret_code, check_guess
 from tools import cleanup_input, display_guess_history
 
 
@@ -52,7 +52,6 @@ def mastermind():
 
                 if correct_pos == code_length:
                     print(f"\nYou've Guessed the Code Correctly!\nThe Solved Code was : {secret_code}")
-                    prompt_play_again()
                     break
                 else:
                     print('\n')
@@ -63,8 +62,15 @@ def mastermind():
             continue  # restart loop
     if attempts == 0:
         print(f"\nSorry! You've run out of attempts\nThe Correct Code was : {secret_code}")
-        prompt_play_again()
+
+
+def main():
+    while True:
+        mastermind()
+        if input("Type 'yes' to Play Again or Any Other Key to Exit : ").lower().strip() != "yes":
+            print("\nThanks for Playing! Goodbye!\n")
+            break
 
 
 if __name__ == "__main__":
-    mastermind()
+    main()

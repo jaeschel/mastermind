@@ -58,19 +58,3 @@ def check_guess(secret_code, guess):
 
     return(correct_position, correct_num)
 
-
-def prompt_play_again():
-    """
-    Prompts the user to play again.
-    """
-    while True:
-        response = input("\nDo you want to play again? (yes/no) : ").lower().strip()
-        if response == "yes":
-            from main import mastermind
-            mastermind()
-            break
-        elif response == "no":
-            print("\nThanks for Playing! Goodbye!\n")
-            break
-        else:
-            print("\nInvalid input. Please enter either 'yes' or 'no'")

@@ -24,18 +24,23 @@ def generate_secret_code(code_length, digit_range):
         'format': 'plain',
         'rnd': 'new'
     }
+    retry_count = 0
+    max_retries = 3
 
-    try:
-        response = requests.get(url, params=params)
-        if response.status_code == 200:
-            secret_code = list(map(int, response.text.strip().splitlines()))
-            return secret_code
+    while retry_count < max_retries:
+        try:
+            response = requests.get(url, params=params, timeout=5)
+            if response.status_code == 200:
+                secret_code = list(map(int, response.text.strip().splitlines()))
+                return secret_code
 
-    except Exception as e:
-        print("hmm... it didn't work. ERROR: ", e)
-        print("Random.org API failed. Grabbing the code locally...")
-        secret_code = [random.randint(0, digit_range - 1) for _ in range(code_length)]
-        return secret_code
+        except Exception as e:
+            print("hmm... it didn't work. ERROR: ", e)
+            retry_count += 1
+        
+    print("Random.org API failed. Grabbing the code locally...")
+    secret_code = [random.randint(0, digit_range - 1) for _ in range(code_length)]
+    return secret_code
 
 
 def check_guess(secret_code, guess):

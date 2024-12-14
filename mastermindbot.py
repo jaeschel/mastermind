@@ -5,7 +5,7 @@ from game_logic import check_guess
 
 class MastermindBot:
     """
-    A "bot" that helps generate smarter guesses based on history of guess
+    A "bot" that helps generate smart guesses based on history of guess
     """
 
     def __init__(self, code_length, digit_range):
@@ -16,8 +16,9 @@ class MastermindBot:
                 code_length(int) = length of code
                 digit_range(int) = range of digits to choose from
             """
-        self.possible_codes = list(product(range(digit_range),
+        self.possible_codes = set(product(range(digit_range),
                                            repeat=code_length))
+        self.filtered_history = set()
 
     def filter_possible_guesses(self, guess, feedback):
         """
@@ -43,12 +44,18 @@ class MastermindBot:
                 digit_range = 7, code_length = 5, n = 100
                 Success Rate < 6 guesses
         """
-        if not history[-1][0]:  # check if we only have one entry
-            self.filter_possible_guesses(history[0][0], history[0][1])
-        else:
-            self.filter_possible_guesses(history[-1][0], history[-1][1])
+        # if not history[-1][0]:  # check if we only have one entry
+        #     self.filter_possible_guesses(history[0][0], history[0][1])
+        # else:
+        #     self.filter_possible_guesses(history[-1][0], history[-1][1])
 
         if not self.possible_codes:
             return None
+        
+        for guess, feedback in history:
+            if (tuple(guess),feedback) not in self.filtered_history:
+                self.filter_possible_guesses(guess,feedback)
+                self.filtered_history.add((tuple(guess),feedback))
+
 
         return random.choice(self.possible_codes)

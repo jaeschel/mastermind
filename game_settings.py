@@ -16,10 +16,10 @@ class GameSettings():
         while True:
             self.code_length = input('\nHow many digits do you want to solve for? : ').strip()
             try:
-                if 1 <= int(self.code_length) <= 9:
+                if 1 <= int(self.code_length) <= 7:
                     break
                 else:
-                    print('\nEnter code length (1-9!')
+                    print('\nEnter code length (1-7!')
             except ValueError:
                 print("\nInvalid input! Enter a positive integer!")
 

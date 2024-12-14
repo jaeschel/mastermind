@@ -67,7 +67,7 @@ def mastermind():
 def main():
     while True:
         mastermind()
-        if input("Type 'yes' to Play Again or Any Other Key to Exit : ").lower().strip() != "yes":
+        if input("\nPlay Again? Type 'yes' or Any Other Key to Exit : ").lower().strip() != "yes":
             print("\nThanks for Playing! Goodbye!\n")
             break
 

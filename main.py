@@ -13,14 +13,15 @@ def play_game():
     hint_used = False
 
     settings = GameSettings()
-    code_length, digit_range = settings.configure()
-    hintbot = MastermindBot(code_length, digit_range)
-    secret_code = generate_secret_code(code_length, digit_range)
+    code_length, digit_range, digit_range_min, digit_range_max = settings.configure()
+    hintbot = MastermindBot(code_length, settings.digit_range_min, settings.digit_range_max)
+    secret_code = generate_secret_code(code_length, digit_range, settings.digit_range_min, settings.digit_range_max)
+    print(secret_code)
 
     while attempts > 0:
 
         print("\nNumber of attempts left : ", attempts)
-        guess = get_user_guess(hint_used, code_length, digit_range)
+        guess = get_user_guess(hint_used, code_length, digit_range_min, digit_range_max)
 
         if str(guess).lower().strip() == 'hint':
             if history:  # if they've played a game
@@ -44,9 +45,9 @@ def play_game():
                 print('\n')
                 display_guess_history(history)
     
-            if correct_pos == code_length:
-                print(f"\nYou've Guessed the Code Correctly!\nThe Solved Code was : {secret_code}")
-                break
+                if correct_pos == code_length:
+                    print(f"\nYou've Guessed the Code Correctly!\nThe Solved Code was : {secret_code}")
+                    break
 
         except Exception as e:
             print("\nUnexpected Error:", e)

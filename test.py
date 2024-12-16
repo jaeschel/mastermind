@@ -28,12 +28,12 @@ class TestMastermindGame(unittest.TestCase):
     @patch("requests.get")
     def test_generate_secret_code_api_success(self, mock_get):
         mock_get.return_value = MagicMock(status_code=200, text="1\n2\n3\n4\n")
-        result = generate_secret_code(4, 8)
+        result = generate_secret_code(4, 8, 0, 7)
         self.assertEqual(result, [1, 2, 3, 4])
 
     @patch("requests.get", side_effect=Exception("API failure"))
     def test_generate_secret_code_api_failure(self, mock_get):
-        result = generate_secret_code(4, 8)
+        result = generate_secret_code(4, 8, 0, 7)
         self.assertEqual(len(result), 4)
         self.assertTrue(all(0 <= num < 8 for num in result))
 
@@ -49,22 +49,22 @@ class TestMastermindGame(unittest.TestCase):
 
     def test_validate_input_correct(self):
         guess = [1, 2, 3, 4]
-        result = validate_input(guess, 4, 8)
+        result = validate_input(guess, 4, 0, 8)
         self.assertEqual(result, guess)
 
     def test_validate_input_incorrect_length(self):
         guess = [1, 2, 3]
-        result = validate_input(guess, 4, 8)
+        result = validate_input(guess, 4, 0, 8)
         self.assertEqual(result, [])
 
     def test_game_settings_valid_input(self):
-        with patch("builtins.input", side_effect=["4", "8"]):
+        with patch("builtins.input", side_effect=["4", "0", "8"]):
             settings = GameSettings()
             result = settings.configure()
-            self.assertEqual(result, (4, 8))
+            self.assertEqual(result, (4, 8, 0, 8))
 
     def test_mastermind_bot_hint(self):
-        bot = MastermindBot(4, 8)
+        bot = MastermindBot(4, 0, 8)
         history = [([1, 2, 3, 4], (2, 2))]
         hint = bot.get_hint(history)
         self.assertEqual(len(hint), 4)

@@ -1,7 +1,10 @@
 import re
+from game_settings import GameSettings
+
+settings = GameSettings()
 
 
-def validate_input(guess,code_length,digit_range):
+def validate_input(guess, code_length, digit_range_min, digit_range_max):
     """
     Validates user guess within game restraints
 
@@ -17,11 +20,11 @@ def validate_input(guess,code_length,digit_range):
     if str(guess).strip().lower() == 'hint':
         return(guess)
 
-    if guess and len(guess) == code_length and all(0 <= n < digit_range for n in guess):
+    if guess and len(guess) == code_length and all(digit_range_min <= n < digit_range_max for n in guess):
         return(guess)
     
     else:
-        print(f"\nInvalid input. Enter exactly {code_length} numbers from 0 to {digit_range-1}.")
+        print(f"\nInvalid input. Enter exactly {code_length} numbers from {digit_range_min} to {digit_range_max-1}.")
         return []
 
 
@@ -46,7 +49,7 @@ def cleanup_guess(guess):
         return list(map(int, cleaned_guess))
 
 
-def get_user_guess(hint_used, code_length, digit_range):
+def get_user_guess(hint_used, code_length, digit_range_min, digit_range_max):
     """
     Prompts the user to enter a guess and validates the input.
 
@@ -67,7 +70,7 @@ def get_user_guess(hint_used, code_length, digit_range):
         prompt += " or 'hint' for a hint! : "
 
     guess = cleanup_guess(input(prompt))
-    guess = validate_input(guess, code_length, digit_range)
+    guess = validate_input(guess, code_length, digit_range_min, digit_range_max)
 
     return guess
 

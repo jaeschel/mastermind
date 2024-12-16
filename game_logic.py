@@ -1,14 +1,16 @@
 import random
 import requests
 
+MAX_DIGIT = 9
 
-def generate_secret_code(code_length, digit_range):
+def generate_secret_code(code_length, digit_range, min_digit_range, max_digit_range):
     """
     Generates the secret code from a specified length and digit range
 
         Args:
             code_length(int) = Length of code between 1-7.
             digit_range(int) = Range of digits to choose from between 2-8.
+            start_value(int) = 
 
         Returns:
             List[int] = a list of integers that represents the secret code
@@ -17,8 +19,8 @@ def generate_secret_code(code_length, digit_range):
     url = "https://www.random.org/integers"
     params = {
         'num': code_length,
-        'min': 0,
-        'max': digit_range-1,
+        'min': min_digit_range,
+        'max': max_digit_range,
         'col': 1,
         'base': 10,
         'format': 'plain',
@@ -30,12 +32,13 @@ def generate_secret_code(code_length, digit_range):
     while retry_count < max_retries:
         try:
             response = requests.get(url, params=params, timeout=5)
+            print(response.status_code)
             if response.status_code == 200:
                 secret_code = list(map(int, response.text.strip().splitlines()))
                 return secret_code
 
         except Exception as e:
-            print("hmm... it didn't work. ERROR: ", e)
+            print("API Call. ERROR: ", e)
             retry_count += 1
         
     print("Random.org API failed. Grabbing the code locally...")
@@ -45,7 +48,7 @@ def generate_secret_code(code_length, digit_range):
 
 def check_guess(secret_code, guess):
     """
-    Evaluates the positons of guess to the secret code
+    Evaluates the positons of guess to the secret code.
 
         Args:
             secrete_code(list[int]) = target code.
@@ -56,7 +59,7 @@ def check_guess(secret_code, guess):
     # zip() = pairs each element
     correct_position = sum(a == b for a, b in list(zip(secret_code, guess)))  # if so returns number of True
 
-    # for each individual number in guess, compare to its frequency in secret_code and guess
+    # for each individual number in guess, compare to its frequency in secret_code
     # return the smaller number, then add them together
     correct_num = sum(min(secret_code.count(n), guess.count(n)) for n in set(guess))
     correct_num = correct_num - correct_position

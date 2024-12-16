@@ -71,7 +71,6 @@ Feedback: You've Guessed the Code Correctly!
 ## Extension Features
 - **Custom Game Settings**: Configure the game with your preferred code length and digit range.
 - **Hint System**: A bot provides a best-guess hint if you are stuck.
-- **Play Again**: A system that resets gameplay.
 
 ---
 
@@ -97,10 +96,6 @@ python -m unittest discover
 ---
 
 ## Future Imporvement/Abandoned Ideas
-- **HintbotSmart**: A smarter way to make a predictive guess.
-    - This idea was abandoned due to high time complexity causing performance issues.
-    - Isn't effective enough to be worth it
-    - Currently on average it takes hintbot 5.53 guesses, hintbotsmart takes about 5.44 guesses (n=100)
 - **Game Modes**: allowing the user different options of gameplay difficulty.
     - Time just prevented implementation
     - The general idea would be to prompt the user for a difficulty level (easy/standard/hard/custom)
@@ -133,4 +128,4 @@ By documenting this process, I aim to reflect the mindset of a backend engineer 
 
 **Thanks for Playing!**
 
-Last Editied December 12th, 2024
+Last Edited December 12th, 2024

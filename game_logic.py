@@ -35,7 +35,7 @@ def generate_secret_code(code_length, digit_range):
                 return secret_code
 
         except Exception as e:
-            print("hmm... it didn't work. ERROR: ", e)
+            print("API Call ERROR: ", e)
             retry_count += 1
         
     print("Random.org API failed. Grabbing the code locally...")

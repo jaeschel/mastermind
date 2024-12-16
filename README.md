@@ -116,7 +116,6 @@ python -m unittest discover
 ---
 
 ## Future Imporvement/Abandoned Ideas
-
 - **Game Modes**: allowing the user different options of gameplay difficulty.
     - Time just prevented implementation
     - The general idea would be to prompt the user for a difficulty level (easy/standard/hard/custom)
@@ -149,4 +148,4 @@ However, building this project required me to adopt best practices in software d
 
 **Thanks for Playing!**
 
-Last Editied December 12th, 2024
+Last Edited December 12th, 2024

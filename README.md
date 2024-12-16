@@ -120,9 +120,9 @@ Throughout development, I focused on ensuring:
 For each feature implementation, my approach centered on breaking down the functionality into its smallest components and building from the ground up. This foundational-first strategy ensured that each part of the system was structurally sound before scaling or optimizing further. By focusing on core logic early on, I could address potential edge cases, simplify debugging, and maintain clean, modular code. This method allowed for more efficient optimization later in the development process while ensuring that each feature remained robust, maintainable, and extensible.
 
 ### Challenges
-During this process, one of the most challenging aspects I encountered was error testing. My background in Biomedical and Mechanical Engineering involved working extensively with standard data formats such as JSON, CSV, and TXT files. As a result, much of my previous experience centered around data cleaning, smoothing, and presentation. Transitioning to a backend development environment required adapting these skills to a new context, where managing dynamic data structures and ensuring robust error handling became critical components of the development process. This shift deepened my understanding of data integrity and system reliability from an engineering perspective.
+One of the main challenges I faced during this project was transitioning from a biomedical/mechanical engineering mindset to a programmer's mindset. In my previous work, I was primarily focused on data processing, cleaning, and analysis. These tasks didn’t require as much emphasis on modularization, readability, or long-term code maintainability.
 
-By documenting this process, I aim to reflect the mindset of a backend engineer solving a challenging game logic problem.
+However, building this project required me to adopt best practices in software development, including designing reusable functions, structuring code into clear modules, and writing tests. Shifting from focusing solely on immediate data outputs to considering how well the code is organized and how easily it can be understood by others was a significant adjustment. This mindset shift taught me valuable lessons about scalable and maintainable coding practices that I will carry forward into future projects.
 
 ---
 

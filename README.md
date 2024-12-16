@@ -1,11 +1,17 @@
-## REACH BACKEDN INTERVIEW UPDATES
-**Requirement**: Allow users to choose what range of contiggous digits they can choose from.
+## REACH BACKEND INTERVIEW UPDATES
+
+**Requirement**: 
+   - Allow users to choose what range of contiggous digits they can choose from.
+
 **Design Logic**:
    -  User Input Configuration: Prompt the user for the max/min digits and validate it
    -  Code Generation: Use specified range to generate the secret code
    -  Guess Validaton: Validate that the user guess matches the new digit range
    -  Game Integration: Ensure the game loop works
-**Implementation**: Configuring game settings through user input generating the secret code within the specified range, and ensuring all guesses are validated accordingly. The hint system and feedback logic also need to respect these settings
+
+**Implementation**: 
+   - Configuring game settings through user input generating the secret code within the specified range, and ensuring all guesses are validated accordingly. The hint system and feedback logic also need to respect these settings
+
 **Test**:
    - Correct handling of various digit range configurations.
    - Validation of guesses within and outside the configured range.

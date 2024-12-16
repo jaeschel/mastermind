@@ -44,10 +44,6 @@ class MastermindBot:
                 digit_range = 7, code_length = 5, n = 100
                 Success Rate < 6 guesses
         """
-        # if not history[-1][0]:  # check if we only have one entry
-        #     self.filter_possible_guesses(history[0][0], history[0][1])
-        # else:
-        #     self.filter_possible_guesses(history[-1][0], history[-1][1])
 
         if not self.possible_codes:
             return None

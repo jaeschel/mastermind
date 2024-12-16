@@ -32,10 +32,10 @@ class MastermindBot:
                 List[list] = a list of all remaining possible codes
                             ex = "[[1,2,3,4],[5,6,7,0]]"
         """
-        self.possible_codes = [
+        self.possible_codes = {
             code for code in self.possible_codes
             if check_guess(code, guess) == feedback
-        ]
+        }
 
     def get_hint(self, history):
         """
@@ -58,4 +58,4 @@ class MastermindBot:
                 self.filtered_history.add((tuple(guess),feedback))
 
 
-        return random.choice(self.possible_codes)
+        return random.choice(list(self.possible_codes))

@@ -5,6 +5,11 @@ class GameSettings():
     def __init__(self):
         self.code_length = None
         self.digit_range = None
+        self.MAX_CODE_LENGTH = 7
+        self.MIN_CODE_LENGTH = 1
+        self.MAX_DIGIT_RANGE = 8
+        self.MIN_DIGIT_RANGE = 2
+
 
     def configure(self):
         """
@@ -14,24 +19,25 @@ class GameSettings():
                 tuple[int,int]: a tuple of two positive integers [code_length,digit_range]
         """
         while True:
-            self.code_length = input('\nHow many digits do you want to solve for? : ').strip()
+            self.code_length = input(f'\nEnter code length btwn {self.MIN_CODE_LENGTH} - {self.MAX_CODE_LENGTH}! : ').strip()
             try:
-                if 1 <= int(self.code_length) <= 7:
+                if self.MIN_CODE_LENGTH <= int(self.code_length) <= self.MAX_CODE_LENGTH:
                     break
                 else:
-                    print('\nEnter code length (1-7!')
-            except ValueError:
-                print("\nInvalid input! Enter a positive integer!")
+                    print(f'\nInvalid input! Number not within bounds.')
+                    
+            except ValueError as e:
+                print(f"\nInvalid input! {e}")
 
         while True:
             try:
-                self.digit_range = input('\nEnter digit range (2-8): ').strip()
-                if 2 <= int(self.digit_range) <= 8:
+                self.digit_range = input(f'\nEnter digit range ({self.MIN_DIGIT_RANGE}-{self.MAX_DIGIT_RANGE}) : ').strip()
+                if self.MIN_DIGIT_RANGE <= int(self.digit_range) <= self.MAX_DIGIT_RANGE:
                     break
                 else:
-                    print('\nPlease enter a number between 2 and 8!')
+                    print(f'\nInvalid input! Number not within bounds.')
 
             except ValueError:
-                print("\nInvalid input! Enter a positive integer!")
+                print(f"\nInvalid input! {e}")
 
         return int(self.code_length), int(self.digit_range)

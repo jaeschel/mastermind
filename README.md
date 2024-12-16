@@ -3,7 +3,30 @@
 This is the REACH Mastermind Game, designed as a command-line game where players try to guess a secret number combination within 10 attempts. The game showcases backend engineering principles, including API integration, game logic, and input validation.
 
 ## Project Overview
-The Mastermind Game demonstrates problem-solving as a backend engineer by tackling core challenges such as input validation, API integration, and efficient search algorithms through a hint-generating bot. This README reflects my thought process, decisions made, and future improvements.
+The Mastermind Game demonstrates problem-solving as a backend engineer by tackling core challenges such as input validation, API integration, and search algorithms through a hint-generating bot. This README reflects my thought process, decisions made, and future improvements.
+
+## How to Play
+- The computer randomly selects a 4-number combination from digits `0-7` (duplicates allowed).
+- You have 10 attempts to guess the correct combination.
+- After each guess, you receive feedback:
+  - **Correct number, wrong location**
+  - **Correct number and correct location**
+  - **All numbers incorrect**
+
+### Example Run
+```
+Number of attempts left: 10
+Enter your 4-number guess: 1234
+Feedback: 1 correct number, 1 correct location
+
+Number of attempts left: 9
+Enter your 4-number guess: 1301
+Feedback: 2 correct numbers, 1 correct location
+
+Number of attempts left: 8
+Enter your 4-number guess: 1312
+Feedback: You've Guessed the Code Correctly!
+```
 
 ---
 
@@ -39,30 +62,26 @@ The Mastermind Game demonstrates problem-solving as a backend engineer by tackli
    - On Linux: Press `Ctrl+C`
 
 ---
+## Game Requirements
+- **Code API Generation**: Ability to generate a secret code from "https://www.random.org"
+- **4 Digit Guesses**: Ability to guess the combinations of 4 numbers
+- **History of Guesses and Feedback**: Ability to view the history of guesses and their feedback 
+- **Number of Attempts**: The number of guesses remaining is displayed
 
-## How to Play
-- The computer randomly selects a 4-number combination from digits `0-7` (duplicates allowed).
-- You have 10 attempts to guess the correct combination.
-- After each guess, you receive feedback:
-  - **Correct number, wrong location**
-  - **Correct number and correct location**
-  - **All numbers incorrect**
-
-### Example Run
-```
-Number of attempts left: 10
-Enter your 4-number guess: 1234
-Feedback: 1 correct number, 1 correct location
-```
-
----
-
-## Game Features
+## Extension Features
 - **Custom Game Settings**: Configure the game with your preferred code length and digit range.
 - **Hint System**: A bot provides a best-guess hint if you are stuck.
 - **Play Again**: A system that resets gameplay.
 
 ---
+
+## File Usage
+- **main.py**: Main Mastermind gameplay.
+- **game_logic**: Implements the core game logic, including code generation and guess evaluation.
+- **game_settings**: Manages customizable game settings.
+- **mastermindbot.py**: defines a bot that provides hints based on past attempts.
+- **tools.py**: Provides utility functions for input validation, cleaning guesses, and displaying guess history.
+- **test.py**: Contains extensive unit tests to validate the correctness of game logic, bot behavior, and input handling.
 
 ## Tests
 To run the tests:
@@ -77,16 +96,17 @@ python -m unittest discover
 
 ---
 
-## Future Improvements
-- **Multiplayer Game**: Ask for someone else's secret code.
-- **Leave Game**: Add a "clean" exit option during gameplay.
-
----
-
-## Abandoned Ideas
-- **MastermindSmart**: A smarter way to make a predictive guess.
+## Future Imporvement/Abandoned Ideas
+- **HintbotSmart**: A smarter way to make a predictive guess.
     - This idea was abandoned due to high time complexity causing performance issues.
     - Isn't effective enough to be worth it
+    - Currently on average it takes hintbot 5.53 guesses (n=100)
+- **Game Modes**: allowing the user different options of gameplay difficulty.
+    - Time just prevented implementation
+    - The general idea would be to prompt the user for a difficulty level (easy/standard/hard/custom)
+       - **"easy"** would be a 3 digit game, with 4 digit options
+       - **"standard"** would be the standard 4 digit game with 8 options
+       - **"hard"** would be a 6 digit game with 8 options
 - **Lucky Break**: After 5 guesses, reveal one correct number and position.
     - Although I couldn't implement this feature due to time constraints, its logic is well-defined:
         - In `main.py`, initialize a variable `lucky_guess = False`.

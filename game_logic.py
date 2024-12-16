@@ -7,8 +7,8 @@ def generate_secret_code(code_length, digit_range):
     Generates the secret code from a specified length and digit range
 
         Args:
-            code_length(int) = length of code
-            digit_range(int) = range of digits to choose from
+            code_length(int) = Length of code between 1-7.
+            digit_range(int) = Range of digits to choose from between 2-8.
 
         Returns:
             List[int] = a list of integers that represents the secret code
@@ -48,8 +48,8 @@ def check_guess(secret_code, guess):
     Evaluates the positons of guess to the secret code
 
         Args:
-            secrete_code(list[int]) = target code
-            guess(list[int]) = the user's guess
+            secrete_code(list[int]) = target code.
+            guess(list[int]) = the user's guess.
         Returns:
             tuple(int,int) = number of correct positions and correct digits
     """

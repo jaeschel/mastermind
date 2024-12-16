@@ -100,7 +100,7 @@ python -m unittest discover
 - **HintbotSmart**: A smarter way to make a predictive guess.
     - This idea was abandoned due to high time complexity causing performance issues.
     - Isn't effective enough to be worth it
-    - Currently on average it takes hintbot 5.53 guesses (n=100)
+    - Currently on average it takes hintbot 5.53 guesses, hintbotsmart takes about 5.44 guesses (n=100)
 - **Game Modes**: allowing the user different options of gameplay difficulty.
     - Time just prevented implementation
     - The general idea would be to prompt the user for a difficulty level (easy/standard/hard/custom)
